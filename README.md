@@ -146,24 +146,3 @@ Ethara.AI leverages a modern, robust JavaScript/TypeScript ecosystem.
 
 ---
 
-## 🚀 Deployment Guide
-
-### Backend Deployment (Railway / Render)
-1. Push this repository to GitHub.
-2. Create a new Web Service on your hosting provider from your GitHub repo.
-3. Select the `backend` folder as the root directory.
-4. Provision a **MongoDB** database and copy the connection string.
-5. Set the following Environment Variables in your hosting dashboard:
-   - `PORT=5000`
-   - `MONGODB_URI=<your-production-mongo-url>`
-   - `JWT_SECRET=<generate-a-strong-secret-key>`
-   - `FRONTEND_URL=<your-production-frontend-url>`
-
-### Frontend Deployment (Vercel / Netlify)
-1. Import the GitHub repository into Vercel/Netlify.
-2. Select the `frontend` folder as the Root Directory.
-3. The platform will automatically detect Vite. Set the Environment Variables:
-   - `VITE_API_URL=<your-production-backend-url>` (e.g., `https://api.etharaai.com`)
-4. Click **Deploy**.
-
-*(Note: Once the frontend is deployed, ensure you update the `FRONTEND_URL` on your backend to prevent CORS errors.)*
