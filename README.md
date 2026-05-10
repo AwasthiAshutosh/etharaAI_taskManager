@@ -14,7 +14,6 @@
 - [Technology Stack](#%EF%B8%8F-technology-stack)
 - [Core Features](#-core-features)
 - [Installation & Setup](#-installation--setup)
-- [Deployment Guide](#-deployment-guide)
 
 ---
 
