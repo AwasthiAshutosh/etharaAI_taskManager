@@ -137,7 +137,7 @@ const Layout = () => {
                 <h1 className="text-[22px] font-bold text-white tracking-tight leading-tight">
                   Ethara<span className="text-[#5e6ad2]">.AI</span>
                 </h1>
-                <p className="text-[11px] text-[#4a4f6e] leading-tight truncate font-medium">Ethara.AI Task Manager</p>
+                <p className="text-[11px] text-[#4a4f6e] leading-snug font-medium">Ethara.AI Task Manager</p>
               </div>
             </div>
           )}
