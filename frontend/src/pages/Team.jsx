@@ -82,7 +82,7 @@ const Team = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid-auto-summary">
         <div className="card flex items-center gap-4 p-4">
           <div className="w-10 h-10 rounded-lg bg-[#5e6ad2]/10 border border-[#5e6ad2]/20 flex items-center justify-center text-[#5e6ad2]">
             <FolderKanban size={18} />

@@ -22,7 +22,7 @@ app.use(
 
       const allowedOrigins = [
         config.frontendUrl,
-        'etharaai-projectmanager.up.railway.app'
+        'https://etharaai-projectmanager.up.railway.app'
       ];
 
       if (allowedOrigins.includes(origin) || origin.endsWith('.railway.app')) {
@@ -59,7 +59,9 @@ app.use((req, res) => {
 // Global error handler
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
-  res.status(500).json({
+  // CORS errors get a clear status code
+  const status = err.message?.startsWith('Not allowed by CORS') ? 403 : 500;
+  res.status(status).json({
     message: config.nodeEnv === 'development' ? err.message : 'Internal server error.',
   });
 });

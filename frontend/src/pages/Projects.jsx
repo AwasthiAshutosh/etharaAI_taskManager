@@ -99,7 +99,7 @@ const Projects = () => {
           <p className="text-[13px] text-slate-500 dark:text-[#a1a1aa] mt-1">You haven't been assigned to any projects yet.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid-auto-card">
           {projects.map((project, idx) => (
             <Link 
               to={`/projects/${project._id}`}

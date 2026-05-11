@@ -115,6 +115,35 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
+/* ─── Responsive Auto-Fit Grids (container-aware) ─────────── */
+/* These grids auto-adjust columns based on available container
+   width instead of viewport breakpoints, so tiles keep their
+   shape when the sidebar collapses / expands.                  */
+
+.grid-auto-stat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.grid-auto-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.grid-auto-chart {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 1rem;
+}
+
+.grid-auto-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
 /* ─── Buttons ─────────────────────────────────────────────── */
 .btn {
   display: inline-flex;

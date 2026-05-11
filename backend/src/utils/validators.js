@@ -32,7 +32,7 @@ const createTaskSchema = z.object({
   assignedTo: z.string().nullable().optional().default(null),
   status: z.enum(['To Do', 'In Progress', 'Done']).optional().default('To Do'),
   priority: z.enum(['Low', 'Medium', 'High']).optional().default('Medium'),
-  dueDate: z.string().nullable().optional().default(null),
+  dueDate: z.string().nullable().optional().default(null).transform(v => v === '' ? null : v),
 });
 
 const updateTaskSchema = z.object({
@@ -41,7 +41,7 @@ const updateTaskSchema = z.object({
   assignedTo: z.string().nullable().optional(),
   status: z.enum(['To Do', 'In Progress', 'Done']).optional(),
   priority: z.enum(['Low', 'Medium', 'High']).optional(),
-  dueDate: z.string().nullable().optional(),
+  dueDate: z.string().nullable().optional().transform(v => v === '' ? null : v),
 });
 
 module.exports = {

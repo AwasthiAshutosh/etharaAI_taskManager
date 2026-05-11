@@ -162,9 +162,9 @@ const Calendar = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
         {/* Calendar Grid */}
-        <div className="lg:col-span-2">
+        <div>
           <div className="card p-0 overflow-hidden">
             {/* Month Navigation */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-[#e5e7eb] dark:border-[#27272a]">
@@ -255,7 +255,7 @@ const Calendar = () => {
         </div>
 
         {/* Day Detail Panel */}
-        <div className="lg:col-span-1">
+        <div>
           <div className="card h-full min-h-[400px]">
             {selectedDay ? (
               <>

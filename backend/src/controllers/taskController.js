@@ -132,10 +132,10 @@ exports.updateTask = async (req, res) => {
       }
     }
 
-    // Process dueDate
+    // Process dueDate — convert empty string / null to null, otherwise parse
     const updateData = { ...req.body };
-    if (updateData.dueDate) {
-      updateData.dueDate = new Date(updateData.dueDate);
+    if ('dueDate' in updateData) {
+      updateData.dueDate = updateData.dueDate ? new Date(updateData.dueDate) : null;
     }
 
     const updatedTask = await Task.findByIdAndUpdate(req.params.id, updateData, {

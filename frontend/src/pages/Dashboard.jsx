@@ -86,7 +86,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid-auto-stat">
         {statCards.map((card, idx) => (
           <div key={idx} className="card flex items-center p-4 gap-4 animate-slide-in group" style={{ animationDelay: `${idx * 0.05}s` }}>
             <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${card.bg} ${card.color} transition-transform group-hover:scale-105`}>
@@ -100,7 +100,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+      <div className="grid-auto-chart mt-6">
         {/* Status Chart */}
         <div className="card h-80 flex flex-col animate-slide-in" style={{ animationDelay: '0.2s' }}>
           <h3 className="text-[14px] font-semibold text-slate-900 dark:text-white mb-6">Tasks by Status</h3>
