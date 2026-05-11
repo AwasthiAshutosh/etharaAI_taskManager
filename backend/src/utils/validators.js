@@ -5,6 +5,7 @@ const signupSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
   role: z.enum(['Admin', 'Member']).optional().default('Member'),
+  adminSecret: z.string().optional(),
 });
 
 const loginSchema = z.object({

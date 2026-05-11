@@ -69,16 +69,17 @@ const Layout = () => {
       onClick={closeSidebar}
       className={({ isActive }) => {
         if (collapsed) {
-          return `flex items-center justify-center h-13 w-13 rounded-xl transition-all ${isActive
+          return `flex items-center justify-center h-11 w-11 rounded-xl transition-all translate-x-1 ${isActive
             ? 'bg-[#1a1f3d] border border-[#2d3470] text-white'
             : 'text-[#5a5f82] hover:text-[#9499bb] hover:bg-[#141836]'
             }`;
         }
-        return `flex items-center gap-4 pl-5 pr-4 h-13 rounded-2xl transition-all text-[16px] font-medium w-full ${isActive
+        return `flex items-center gap-3.5 pr-5 h-12 rounded-2xl transition-all text-[15px] font-medium w-full ${isActive
           ? 'bg-gradient-to-r from-[#1e265c] to-[#151a38] border border-[#2d3470] text-white shadow-lg shadow-black/20'
           : 'text-[#8b90b0] hover:text-white border border-transparent'
           }`;
       }}
+      style={!collapsed ? { paddingLeft: '25px' } : undefined}
       title={collapsed ? item.name : undefined}
     >
       {({ isActive }) => (
@@ -90,14 +91,14 @@ const Layout = () => {
             <>
               <span className="flex-1">{item.name}</span>
               {item.count !== undefined && (
-                <span className={`text-[12px] font-bold min-w-[28px] h-[22px] flex items-center justify-center rounded-full px-2 ${isActive
+                <span className={`text-[12px] font-bold min-w-[30px] h-[24px] flex items-center justify-center rounded-full px-2.5 ml-1 ${isActive
                   ? 'bg-[#3b49df] text-white'
                   : 'bg-[#1c2040] text-[#5a5f82]'
                   }`}>
                   {item.count}
                 </span>
               )}
-              {isActive && <ChevronRight size={18} className="text-white/60 ml-1" />}
+              {isActive && <ChevronRight size={16} className="text-white/50 ml-0.5" />}
             </>
           )}
         </>
@@ -106,7 +107,7 @@ const Layout = () => {
   );
 
   return (
-    <div className="flex h-screen bg-[#080a1a] gap-3 transition-colors">
+    <div className="flex h-screen bg-[#080a1a] transition-colors">
 
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
@@ -122,12 +123,14 @@ const Layout = () => {
           } ${collapsed ? 'w-[94px]' : 'w-[260px]'} flex flex-col`}
         style={{
           background: 'linear-gradient(180deg, #0b0e21 0%, #080a1a 100%)',
+          paddingTop: '20px',
+          paddingBottom: '20px',
           paddingLeft: '20px',
           paddingRight: '20px'
         }}
       >
         {/* Logo Header */}
-        <div className={`flex items-center ${collapsed ? 'justify-center py-6' : 'pt-12 pb-12'}`} style={!collapsed ? { paddingLeft: '20px' } : {}}>
+        <div className={`flex items-center ${collapsed ? 'justify-center py-4' : 'pt-5 pb-4'}`} style={!collapsed ? { paddingLeft: '20px' } : {}}>
           {!collapsed && (
             <div className="flex items-center gap-4 min-w-0 flex-1">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#5e6ad2] to-[#818cf8] flex items-center justify-center text-white text-[18px] font-bold shadow-xl shadow-[#5e6ad2]/30 flex-shrink-0">
@@ -168,45 +171,46 @@ const Layout = () => {
         </div>
 
         {/* Navigation */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col pb-8">
+        <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col pb-4">
 
           {/* WORKSPACE Section */}
           {!collapsed && (
-            <div className="pt-10 mb-10" style={{ paddingLeft: '20px' }}>
+            <div className="mb-3" style={{ paddingLeft: '20px', paddingTop: '30px' }}>
               <p className="text-[11px] font-bold text-[#4a4f6e] uppercase tracking-[0.2em]">
                 Workspace
               </p>
             </div>
           )}
-          {collapsed && <div className="w-8 h-px bg-[#1c2040] mx-auto pt-8 mb-10" />}
+          {collapsed && <div className="w-13 h-px bg-[#1c2040] mx-auto" style={{ marginTop: '15px', marginBottom: '10px' }} />}
 
-          <nav className="flex flex-col gap-3 mb-10">
+          <nav className="flex flex-col gap-1.5 mb-4">
             {workspaceItems.map(item => renderNavItem(item))}
           </nav>
 
           {/* TASKS Section */}
           {!collapsed && (
-            <div className="pt-10 mb-10" style={{ paddingLeft: '20px' }}>
+            <div className="pt-4 mb-3" style={{ paddingLeft: '20px' }}>
               <p className="text-[11px] font-bold text-[#4a4f6e] uppercase tracking-[0.2em]">
                 Tasks
               </p>
             </div>
           )}
-          {collapsed && <div className="w-8 h-px bg-[#1c2040] mx-auto pt-8 mb-10" />}
+          {collapsed && <div className="w-13 h-px bg-[#1c2040] mx-auto pt-4 mb-3" />}
 
-          <nav className="flex flex-col gap-3">
+          <nav className="flex flex-col gap-1.5">
             {taskItems.map(item => renderNavItem(item))}
           </nav>
         </div>
 
         {/* User Card + Logout */}
-        <div className={`${collapsed ? 'p-2 pb-6' : 'px-10 pb-12 pt-4'}`}>
+        <div className={`${collapsed ? 'p-2 pb-4' : 'px-4 pb-5 pt-4'}`}>
           {!collapsed ? (
             <div className="flex flex-col bg-[#131730] border border-[#1e2348] rounded-3xl overflow-hidden shadow-xl">
               {/* User Card Tile */}
               <button
                 onClick={() => setShowLogout(!showLogout)}
-                className="flex items-center gap-3.5 px-5 py-4 w-full transition-colors hover:bg-white/[0.02]"
+                className="flex items-center gap-3.5 pr-5 py-4 w-full transition-colors hover:bg-white/[0.02]"
+                style={{ paddingLeft: '25px' }}
               >
                 <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#5e6ad2] to-[#818cf8] flex items-center justify-center text-[14px] font-bold text-white uppercase shadow-lg flex-shrink-0">
                   {user?.name?.charAt(0) || 'U'}
@@ -225,7 +229,8 @@ const Layout = () => {
                 <div className="border-t border-[#1e2348] animate-fade-in">
                   <button
                     onClick={logout}
-                    className="flex items-center gap-3.5 px-6 py-4 w-full text-[14px] font-medium text-[#e85d5d] hover:bg-[#e85d5d]/10 transition-all group text-left"
+                    className="flex items-center gap-3.5 pr-6 py-4 w-full text-[14px] font-medium text-[#e85d5d] hover:bg-[#e85d5d]/10 transition-all group text-left"
+                    style={{ paddingLeft: '25px' }}
                   >
                     <LogOut size={18} className="group-hover:translate-x-0.5 transition-transform" />
                     Log out
@@ -256,9 +261,9 @@ const Layout = () => {
         </div>
       </aside>
 
-      <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative bg-slate-50 dark:bg-[#0e0e11] transition-colors my-2 mr-2 rounded-2xl">
+      <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative bg-slate-50 dark:bg-[#0e0e11] transition-all duration-300 m-3 rounded-2xl">
         {/* Topbar */}
-        <header className="h-14 glass flex items-center justify-between px-4 sm:px-8 z-10 sticky top-0">
+        <header className="h-14 glass flex items-center justify-between px-6 sm:px-10 z-10 sticky top-0">
           <div className="flex items-center gap-3">
             <button
               className="lg:hidden p-1.5 rounded-md text-slate-500 hover:bg-slate-100 dark:hover:bg-[#18181b]"
@@ -283,8 +288,8 @@ const Layout = () => {
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-auto p-6 sm:p-8">
-          <div className="max-w-6xl mx-auto w-full pb-12">
+        <div className="flex-1 overflow-auto flex justify-center py-6 sm:py-8">
+          <div className="w-full max-w-[1200px] px-8 sm:px-12 lg:px-16 pb-12">
             <Outlet />
           </div>
         </div>

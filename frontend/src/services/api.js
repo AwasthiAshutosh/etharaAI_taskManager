@@ -26,9 +26,12 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('etharaai_token');
-      localStorage.removeItem('etharaai_user');
-      window.location.href = '/login';
+      // Skip redirect for the auth-check call — AuthContext handles it internally
+      const requestUrl = error.config?.url || '';
+      if (!requestUrl.includes('/users/me')) {
+        localStorage.removeItem('etharaai_token');
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }

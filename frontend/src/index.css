@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Inter font is loaded in index.html */
 @import "tailwindcss";
 
 /* ─── Enable class-based dark mode (Tailwind v4) ─────────────── */
@@ -339,4 +339,58 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-slide-in {
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes loadingPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+}
+
+.loading-pulse {
+  animation: loadingPulse 1.2s ease-in-out infinite;
+}
+
+/* ─── Auth Page Animations ────────────────────────────────── */
+
+/* Staggered entrance animations */
+@keyframes authStaggerIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-stagger-1 { animation: authStaggerIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+.auth-stagger-2 { animation: authStaggerIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+.auth-stagger-3 { animation: authStaggerIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
+.auth-stagger-4 { animation: authStaggerIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both; }
+.auth-stagger-5 { animation: authStaggerIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
+.auth-stagger-6 { animation: authStaggerIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both; }
+
+/* Floating orb effects for hero backgrounds */
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-15px, 15px) scale(0.95); }
+}
+
+@keyframes floatSlowReverse {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-25px, 15px) scale(0.95); }
+  66% { transform: translate(20px, -25px) scale(1.05); }
+}
+
+@keyframes floatMedium {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1) translate(20px, -15px); }
+}
+
+.auth-float-slow { animation: floatSlow 12s ease-in-out infinite; }
+.auth-float-slow-reverse { animation: floatSlowReverse 14s ease-in-out infinite; }
+.auth-float-medium { animation: floatMedium 10s ease-in-out infinite; }
+
+/* Subtle mesh/grid overlay for hero */
+.auth-mesh-bg {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,0.05) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
 }

@@ -52,6 +52,9 @@ const ProjectDetails = () => {
       setSubmitting(true);
       // Hardcode projectId to current project
       const payload = { ...data, projectId: id };
+      // Transform empty string to null to avoid Mongoose CastError
+      if (!payload.assignedTo) payload.assignedTo = null;
+      if (!payload.dueDate) payload.dueDate = null;
       const res = await api.post('/tasks', payload);
       toast.success('Task created successfully');
       setTasks([res.data.task, ...tasks]);
@@ -234,7 +237,7 @@ const ProjectDetails = () => {
                       style={{ padding: '4px 24px 4px 8px' }}
                       value={task.status}
                       onChange={(e) => handleStatusChange(task._id, e.target.value)}
-                      disabled={user.role === 'Member' && (task.assignedTo?._id || task.assignedTo) !== user._id}
+                      disabled={user.role === 'Member' && (task.assignedTo?._id || task.assignedTo) !== (user._id || user.id)}
                     >
                       <option value="To Do">To Do</option>
                       <option value="In Progress">In Progress</option>
@@ -382,6 +385,7 @@ const ProjectDetails = () => {
                         type="checkbox" 
                         value={u._id} 
                         {...regEdit('members')} 
+                        defaultChecked={project.members?.some(m => m._id === u._id)}
                         className="rounded border-slate-300 dark:border-[#3f3f46] text-[#5e6ad2] focus:ring-[#5e6ad2] bg-white dark:bg-[#18181b]"
                       />
                       {u.name} <span className="text-[11px] text-slate-400">({u.role})</span>

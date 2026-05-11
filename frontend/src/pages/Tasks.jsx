@@ -72,7 +72,11 @@ const Tasks = ({ view = 'my-issues' }) => {
   const onSubmitTask = async (data) => {
     try {
       setSubmitting(true);
-      const res = await api.post('/tasks', data);
+      const payload = { ...data };
+      // Transform empty string to null to avoid Mongoose CastError
+      if (!payload.assignedTo) payload.assignedTo = null;
+      if (!payload.dueDate) payload.dueDate = null;
+      const res = await api.post('/tasks', payload);
       toast.success('Task created successfully');
       setTasks([res.data.task, ...tasks]);
       setIsModalOpen(false);
@@ -197,7 +201,7 @@ const Tasks = ({ view = 'my-issues' }) => {
                     style={{ padding: '4px 24px 4px 8px' }}
                     value={task.status}
                     onChange={(e) => handleStatusChange(task._id, e.target.value)}
-                    disabled={user.role === 'Member' && (task.assignedTo?._id || task.assignedTo) !== user._id}
+                    disabled={user.role === 'Member' && (task.assignedTo?._id || task.assignedTo) !== (user._id || user.id)}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <option value="To Do">To Do</option>
