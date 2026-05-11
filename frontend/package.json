@@ -25,6 +25,7 @@
     "react-hot-toast": "^2.6.0",
     "react-router-dom": "^7.14.2",
     "recharts": "^3.8.1",
+    "serve": "^14.2.6",
     "zod": "^4.4.1"
   }
 }
