@@ -14,27 +14,22 @@ const app = express();
 
 // Security middleware
 app.use(helmet());
-// app.use(
-//   cors({
-//     origin: config.frontendUrl,
-//     credentials: true,
-//   })
-// );
 app.use(
   cors({
     origin: function (origin, callback) {
       // Allow requests with no origin (mobile apps, curl, etc.)
       if (!origin) return callback(null, true);
-      
+
       const allowedOrigins = [
         config.frontendUrl,
-        // Add any other domains you need
+        'etharaai-projectmanager.up.railway.app'
       ];
-      
-      if (allowedOrigins.includes(origin)) {
+
+      if (allowedOrigins.includes(origin) || origin.endsWith('.railway.app')) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        console.error(`CORS Blocked: ${origin} not in allowed origins`);
+        callback(new Error(`Not allowed by CORS: ${origin}`));
       }
     },
     credentials: true,
